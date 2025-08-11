@@ -11,7 +11,7 @@ public class Carrinho{
         quantidade.add(qtd);
     }
 
-    public Produto buscarProduto(String nome){
+    public Produto buscarProdutoPeloNome(String nome){
         for(Produto p:produtos){
             if(p.getNome().equalsIgnoreCase(nome)) {
                 return p;
@@ -41,7 +41,8 @@ public class Carrinho{
 
      public void removerProdutos(String nome){
         for(int i = 0; i<produtos.size(); i++){
-            if(produtos.get(i).getNome().equalsIgnoreCase(nome)){
+            Produto p = buscarProdutoPeloNome(nome);
+            if(p != null){
                 produtos.remove(i);
                 quantidade.remove(i);
                 System.out.println("Carrinho atualizado:");
