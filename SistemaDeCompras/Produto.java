@@ -4,8 +4,8 @@ public class Produto {
     private String nome;
     private double preco;
 
-    void exibirInfo(){
-        System.out.println(this.nome + " - " + this.preco);
+    public Produto() {
+
     }
 
     public String getNome() {
@@ -24,11 +24,14 @@ public class Produto {
         this.preco = preco;
     }
 
-    @Override
-    public String toString() {
-        return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", preco=" + preco +
-                '}';
+    public void aplicarDesconto(double percentual){
+        if(percentual > 0 && percentual <= 100){
+            preco -= preco *(percentual/100);
+        }
     }
+
+   public void exibirInfo(){
+       System.out.println("Produto: " + nome + "| Preco: R$ " + preco);
+   }
+
 }

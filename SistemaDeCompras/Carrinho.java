@@ -3,44 +3,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho{
-    private List<Produto> carrinho = new ArrayList<>();
+    private List<Produto> produtos = new ArrayList<>();
+    private List<Integer> quantidade = new ArrayList<>();
 
-    public void adicionarProduto(Produto produto, int quantidade){
-        for(Produto p: carrinho){
-            carrinho.add(p);
+    void adicionarProduto(Produto p, int qtd){
+        produtos.add(p);
+        quantidade.add(qtd);
+    }
+
+    public Produto buscarProduto(String nome){
+        for(Produto p:produtos){
+            if(p.getNome().equalsIgnoreCase(nome)) {
+                return p;
+            }
         }
+        return null;
     }
 
     public double calcularTotal(){
         double total = 0;
-        for(Produto p:carrinho){
-            total += p.getPreco();
+        for(int i = 0; i < produtos.size(); i++){
+            total += produtos.get(i).getPreco()* quantidade.get(i);
         }
         return total;
     }
 
-    private int contarQuantidade(Produto produto){
-        int soma = 0;
-        for(Produto p:carrinho){
-            if(p.equals(produto)) {
-                soma++;
+     public void mostrarResumo(){
+         System.out.println("\nResumo Do Carrinho:\n");
+         for(int i =0 ; i< produtos.size(); i++){
+             Produto p = produtos.get(i);
+             int qtd = quantidade.get(i);
+             System.out.println(p.getNome() + " - R$ " + p.getPreco() + " x " + qtd);
+         }
+         System.out.println("Total: R$ " + calcularTotal());
+
+     }
+
+     public void removerProdutos(String nome){
+        for(int i = 0; i<produtos.size(); i++){
+            if(produtos.get(i).getNome().equalsIgnoreCase(nome)){
+                produtos.remove(i);
+                quantidade.remove(i);
+                System.out.println("Carrinho atualizado:");
+                mostrarResumo();
+                break;
+            }
+            else{
+                System.out.println("Produto " + nome + " não existe no carrinho");
             }
         }
-        return soma;
-    }
+     }
 
-    public void mostrarResumo(){
-        System.out.println("Resumo da compra:");
-
-        List<Produto> produtosCarrinho = new ArrayList<>();
-        for(Produto p:carrinho){
-            if(produtosCarrinho.contains(p)){
-                int qtd = contarQuantidade(p);
-                System.out.println(p.getNome() + " - R$" + p.getPreco() + " x " + qtd);
-                produtosCarrinho.add(p);
-            }
-        }
-    }
 
 
 }
