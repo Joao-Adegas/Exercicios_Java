@@ -12,16 +12,9 @@ public class Main {
         Cliente cliente = new Cliente();
         Carrinho carrinho = new Carrinho();
         String caracteresEspeciais = "^[a-zA-ZÀ-ÿ ]+$";
-/*
-        System.out.println("Digte o email do cliente");
-        String email = getData.nextLine();
 
-        if(!email.contains("@")){
-            System.out.println("O email precisa conter @");
-        }
-        */
 
-        // EMAIL =======================================================================================================
+        // EMAIL
         String email;
         do{
             System.out.println("Digte o email do cliente");
@@ -33,8 +26,8 @@ public class Main {
         }while (!email.contains("@"));
 
 
-        // NOME CLIENTE ================================================================================================
-        System.out.println("Digite nome do CLiente"); // TRYCATCH PRA NUMERO
+        // NOME CLIENTE
+        System.out.println("Digite nome do CLiente");
         String nomeCliente = getData.nextLine();
 
         cliente.setNome(nomeCliente);
@@ -48,10 +41,10 @@ public class Main {
             System.out.println("\nProduto " + i + " :");
 
 
-            //NOME PRODUTO =============================================================================================
+            //NOME PRODUTO
             String nomeProduto;
             do {
-                System.out.println("Digite o nome do produto: "); // TRYCATCH PRA NUMERO
+                System.out.println("Digite o nome do produto: ");
                 nomeProduto = getData.nextLine();
 
                 if(!Pattern.matches(caracteresEspeciais,nomeProduto)){
@@ -61,7 +54,7 @@ public class Main {
             while(!Pattern.matches(caracteresEspeciais,nomeProduto));
 
 
-            // PRECO PRODUTO ===========================================================================================
+            // PRECO PRODUTO
             double precoProduto = 0;
             do {
                 System.out.println("Digite o preço do produto, use vírgula ( Ex: 1,99 ):"); // TRYCATCH PRA STRING
@@ -80,8 +73,7 @@ public class Main {
             } while (precoProduto <= 0);
 
 
-            // QUANTIDADE PRODUTO ======================================================================================
-            // USAR TRYCATCH NumberFormatException PRA GARANTIR QUE O USUÁRIO NÃO VAI DIGITAR STRING
+            // QUANTIDADE PRODUTO
             int qtd;
             do{
                 System.out.println("Digite a quantidade do produto: ");
@@ -105,9 +97,9 @@ public class Main {
             carrinho.mostrarResumo();
 
 
-        // DESCONTO ====================================================================================================
+        // DESCONTO
         System.out.println("Digite o nome de um produto para aplicar 10% de desconto:");
-        String nomeP = getData.nextLine(); // USAR TRYCATCH PRA GARANTIR QUE ELE N DIGITE NUMERO
+        String nomeP = getData.nextLine();
         Produto produtoEncontrado = carrinho.buscarProdutoPeloNome(nomeP);
 
         if(produtoEncontrado != null){
@@ -126,7 +118,7 @@ public class Main {
             String a = getData.nextLine();
 
             if(a.equalsIgnoreCase("s")){
-                // REMOVER PRODUTO DO CARRINHO =========================================================================
+                // REMOVER PRODUTO DO CARRINHO
                 System.out.println("Digite o nome do produto que deseja remover do carrinnho:");
                 String remover = getData.nextLine();
                 carrinho.removerProdutos(remover);
